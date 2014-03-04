@@ -12,8 +12,7 @@ RUN	echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && chmod +x /usr/sbin/pol
 # Varnish
 RUN apt-get install -y varnish
 
-CMD varnishd \
-    -b $VARNISH_BACKEND_PORT_22_TCP_ADDR:$VARNISH_BACKEND_PORT_80_TCP_PORT \
-    -a 0.0.0.0:80 \
-    -s malloc,1G \
-    -F
+ADD default.vcl /etc/varnish/default.vcl
+
+ADD run.sh /run.sh
+CMD ["/bin/bash", "/run.sh"]
