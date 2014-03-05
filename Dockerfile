@@ -12,7 +12,14 @@ RUN	echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && chmod +x /usr/sbin/pol
 # Varnish
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y varnish
 
+RUN mkdir -p /etc/varnish/sites
 ADD default.vcl /etc/varnish/default.vcl
+
+# Install supervisor
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor
+RUN mkdir -p /var/log/supervisor
+
+ADD ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ADD run.sh /run.sh
 CMD ["/bin/bash", "/run.sh"]
