@@ -10,7 +10,7 @@ RUN apt-get update
 RUN	echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && chmod +x /usr/sbin/policy-rc.d
 
 # Varnish
-RUN apt-get install -y varnish
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y varnish
 
 ADD default.vcl /etc/varnish/default.vcl
 
