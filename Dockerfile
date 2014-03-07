@@ -1,4 +1,4 @@
-FROM thomaswelton.com:5000/ubuntu
+FROM thomaswelton/ubuntu
 
 MAINTAINER thomaswelton
 
