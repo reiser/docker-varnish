@@ -5,7 +5,6 @@ include "/etc/varnish/sites/default.vcl";
 
 sub vcl_fetch {
 
-    set beresp.ttl = 1w;
 
     # Varnish determined the object was not cacheable
     if (beresp.ttl <= 0s) {
